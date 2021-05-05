@@ -23,12 +23,17 @@
 
 import jetson.inference
 import jetson.utils
+import serial
 
 import argparse
 import sys
+import time
+
+laser = serial.Serial('/dev/ttyACM0',115200,timeout=0)
+
 
 # load the object detection network
-net = jetson.inference.detectNet("ssd-mobilenet-v2", threshold=.3)
+net = jetson.inference.detectNet("ssd-mobilenet-v2", threshold=.2)
 
 # create video sources & outputs
 input = jetson.utils.videoSource("/dev/video0")
@@ -44,24 +49,44 @@ while True:
 
 
 	# print the detections
-	print("detected {:d} objects in image".format(len(detections)))
+	#print("detected {:d} objects in image".format(len(detections)))
 
 	for detection in detections:
                 #print(detection.ClassID)
                 #print(detection.Center)
+                #print(detection)
                 if detection.ClassID == 88:
-                    print (detection.Center)
-                print(detection)
+                    print("BEAR TIME")
+                    print(detection.Center)
+                    loc = detection.Center
+                    lloc = (720-loc[1])/720
+                    newLoc = (lloc*35)+10
+                    sendStrTilt = "T"+str(int(newLoc)).rjust(3,"0")
+
+                    PanLoc = (loc[0])/1080
+                    newLocP = 105-(PanLoc*60)
+                    sendStrPan = "P"+str(int(newLocP)).rjust(3,"0")
+                    print(sendStrTilt)
+                    laser.write(sendStrTilt.encode())
+                    #time.sleep(.1)
+                    #laser.flush()
+
+                    print(sendStrPan)
+                    laser.write(sendStrPan.encode())
+                    #time.sleep(.1)
+
+                    #time.sleep(1)
+                    #laser.flush()
 
 	# render the image
 	output.Render(img)
 
 	# update the title bar
 	# print out performance info
-	net.PrintProfilerTimes()
+	#net.PrintProfilerTimes()
 
 	# exit on input/output EOS
-	if not input.IsStreaming() or not output.IsStreaming():
-		break
+	#if not input.IsStreaming() or not output.IsStreaming():
+		#break
 
 
