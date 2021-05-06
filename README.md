@@ -18,7 +18,7 @@ This is a computer vision laser cat toy.
   - Run the PlayTime.py file as a super user and the system should boot and be fully functional.
 
 
-# Arduino Program
+# Arduino Program:
   ### Required Libraries:
   - Servo
   ### Program Flow:
