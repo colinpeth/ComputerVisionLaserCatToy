@@ -1,9 +1,7 @@
 # **ComputerVisionLaserCatToy**
 This is a computer vision laser cat toy. 
-The assembled unit is shown below.
-![Assembled Unit](AssembledUnit.JPG)
-The Monitor output with the teddy bear stand in is shown below.
-![Monitor Output](MonitorOutput.JPG)
+
+
 # Required Parts:
   - Nvidia Jetson Nano
   - USB Web Camera
