@@ -1,4 +1,4 @@
-# ComputerVisionLaserCatToy
+# **ComputerVisionLaserCatToy**
 This is a computer vision laser cat toy.
 
 # Required Parts:
