@@ -1,6 +1,9 @@
 # **ComputerVisionLaserCatToy**
-This is a computer vision laser cat toy.
-
+This is a computer vision laser cat toy. 
+The assembled unit is shown below.
+![Assembled Unit](AssembledUnit.JPG)
+The Monitor output with the teddy bear stand in is shown below.
+![Monitor Output](MonitorOutput.JPG)
 # Required Parts:
   - Nvidia Jetson Nano
   - USB Web Camera
@@ -36,5 +39,7 @@ This is a computer vision laser cat toy.
   ### Program Flow:
   - This program is a python class called PlayTime. To create a class object you must pass 2 values into the constructor. It requires the serial port for the arduino along with the baudrate. The class itself contains 2 main methods. The first is the RunChase method. This method runs the auto chase system that moves the laser depending on the desired objects location. The other main method is LiveTrack. This will attempt to place the laser on a desired object and track it as it moves in the view of the camera.
   - Within the __init__ method both the panBounds and tiltBounds must be configured. To configure these run computerVision.py to see what the camera sees. Next use serial_send.py in order to move the laser pointer. Find the bounds of how must pan the laser has to the left and the right as well as up and down. Once these values are set the system is fully configured.
+  - The system uses the detectnet library for object reognition. The program uses the model ssd-mobilenet-v2 for its current object recognition. 
   - Extra Options:
       - self.tolerance varaible is a boolean for how close you require the object to be to the laser in order for it to move to another location. I recommed between .3 and .7.
+      
