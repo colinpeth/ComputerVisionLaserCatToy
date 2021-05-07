@@ -77,12 +77,6 @@ class PlayTime:
         if pan > Left and pan < Right: 
             print("Pan Correct")
             if tilt < top and tilt > bottom:
-                print("dfjghdksjgkl")
-                print("dfjghdksjgkl")
-                print("dfjghdksjgkl")
-                print("dfjghdksjgkl")
-                print("dfjghdksjgkl")
-                print("dfjghdksjgkl")
                 return True
 
         return False
